@@ -27,11 +27,11 @@ class Maze:
         cell_width = self.width//self.cols
         cell_height = self.height//self.rows
 
-        for i in range(self.start.y, self.height + cell_height, cell_height):
-            row = []
-            for j in range(self.start.x, self.width + cell_width, cell_width):
-                row.append(Cell(Point(j, i), cell_width, cell_height, self.window))
-            self.cells.append(row)
+        for col in range(self.cols):
+            new_row = []
+            for row in range(self.rows):
+                new_row.append(Cell(Point(self.start.x + row * cell_width, self.start.y + col * cell_height), cell_width, cell_height, self.window))
+            self.cells.append(new_row)
         
         for row in self.cells:
             for cell in row:
@@ -39,11 +39,11 @@ class Maze:
     
     def _draw_cell(self, cell):
         cell.draw(self.color)
-        self._animate()
+        self._animate(0.0001)
 
-    def _animate(self):
+    def _animate(self, time):
         self.window.redraw()
-        sleep(0.03)
+        sleep(time)
 
     def _break_entrance_exit(self):
         self.cells[0][0].has_top = False
@@ -91,7 +91,7 @@ class Maze:
                 cell.visited = False
     
     def _solve_r(self, i, j):
-        self._animate()
+        self._animate(0.003)
         current_cell = self.cells[i][j]
         current_cell.visited = True
         if i == self.rows - 1 and j == self.cols -1:
@@ -126,11 +126,5 @@ class Maze:
                 self.cells[i][j-1].draw_move(current_cell, True)
 
 
-
-        
-                
-        
-
-    
     def solve(self):
         self._solve_r(0 , 0)

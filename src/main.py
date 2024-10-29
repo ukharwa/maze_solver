@@ -3,9 +3,9 @@ from draw import *
 from maze import Maze
 
 def main():
-    window  = Window(600, 600)
+    window  = Window(1000, 800)
     
-    maze = Maze(Point(50, 50), 500, 500, 10, 10, window)
+    maze = Maze(Point(35, 35), 700, 700, 55, 55, window, 0)
     maze.solve()
 
     window.wait_for_close()
