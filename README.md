@@ -3,5 +3,5 @@ A simple maze creator and solver written in python following the project on `boo
  
 ---
 ## Instructions
-1. Download all the files
+1. Download all the files in /src
 2. Run "main.py"
